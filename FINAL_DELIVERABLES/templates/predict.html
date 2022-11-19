@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Loan Preduction</title>
+    <style>
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    color: #5d6063;
+    background-image: url(https://wallpaper.dog/large/11047182.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 16px;
+    line-height: 1.3;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .speaker-form-header {
+    text-align: center;
+    background-color: #7D8F69;
+    border: 3px solid #A9AF7E;
+    border-radius: 30px;
+  
+    width: 80%;
+    margin: 40px 0;
+    padding: 50px;
+  }
+  
+  .speaker-form-header h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  
+  .speaker-form {
+    background-color: #7D8F69;
+    border: 3px solid #A9AF7E;
+    border-radius: 30px;
+  
+    width: 80%;
+    padding: 50px;
+    margin: 0 0 40px 0;
+  }
+  
+  .form-row {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  
+  .form-row input[type="text"],
+  .form-row input[type="number"] {
+    background-color: #ffffff;
+    border: 1px solid #d6d9dc;
+    border-radius: 3px;
+    width: 100%;
+    padding: 7px;
+    font-size: 14px;
+  }
+  
+  .form-row label {
+    margin-bottom: 15px;
+  }
+  
+  .form-row input[type="text"]:invalid,
+  .form-row input[type="number"]:invalid {
+    border: 1px solid #d55c5f;
+    color: #d55c5f;
+    box-shadow: none; /* Remove default red glow in Firefox */
+  }
+  
+  .legacy-form-row {
+    border: none;
+    margin-bottom: 40px;
+  }
+  
+  .legacy-form-row legend {
+    margin-bottom: 15px;
+  }
+  
+  .legacy-form-row .radio-label {
+    display: block;
+    font-size: 14px;
+    padding: 0 20px 0 10px;
+  }
+  
+  .legacy-form-row input[type="radio"] {
+    margin-top: 2px;
+  }
+  
+  .legacy-form-row .radio-label,
+  .legacy-form-row input[type="radio"] {
+    float: left;
+  }
+  
+  .form-row select {
+    width: 100%;
+    padding: 5px;
+    font-size: 14px; /* This won't work in Chrome or Safari */
+    -webkit-appearance: none; /* This will make it work */
+  }
+  
+  .form-row textarea {
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 14px;
+  
+    border: 1px solid #d6d9dc;
+    border-radius: 3px;
+  
+    min-height: 200px;
+    margin-bottom: 10px;
+    padding: 7px;
+    resize: none;
+  }
+  
+  .form-row .instructions {
+    color: #999999;
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+  
+  .form-row .checkbox-label {
+    margin-bottom: 0;
+  }
+  
+  .form-row button {
+    font-size: 16px;
+    font-weight: bold;
+  
+    color: #ffffff;
+    background-color: #5995da;
+  
+    border: none;
+    border-radius: 3px;
+  
+    padding: 10px 40px;
+    cursor: pointer;
+  }
+  
+  .form-row button:hover {
+    background-color: #76aeed;
+  }
+  
+  .form-row button:active {
+    /* background-color: #407fc7; */
+    background-color: pink;
+  }
+  
+  @media only screen and (min-width: 700px) {
+    .speaker-form-header,
+    .speaker-form {
+      width: 600px;
+    }
+    .form-row {
+      flex-direction: row;
+      align-items: center; /* To avoid stretching */
+      margin-bottom: 20px;
+    }
+    .form-row input[type="text"],
+    .form-row input[type='number'],    /* Add */
+    .form-row select,                 /* These */
+    .form-row textarea {
+      /* Selectors */
+      width: 250px;
+      height: initial;
+    }
+    .form-row label {
+      text-align: right;
+      width: 120px;
+      margin-top: 7px;
+      padding-right: 20px;
+    }
+    .legacy-form-row {
+      margin-bottom: 10px;
+    }
+    .legacy-form-row legend {
+      width: 120px;
+      text-align: right;
+      padding-right: 20px;
+    }
+    .legacy-form-row legend {
+      float: left;
+    }
+    .form-row .instructions {
+      margin-left: 120px;
+    }
+    .form-row .checkbox-label {
+      margin-left: 120px;
+      width: auto;
+    }
+    .form-row button {
+      margin-left: 120px;
+    }
+    label{
+      color: #fff;
+    }
+  }
+    </style>
+  </head>
+  <body>
+    <header class="speaker-form-header">
+      <h1>LOAN PREDICTION</h1>
+    </header>
+    <form action="{{ url_for('evaluate') }}" method="post" class="speaker-form">
+     
+      <div class="form-row">
+        <label for="Gender">Gender</label>
+        <select id="Gender" name="Gender" required>
+          <option value="1">Male</option>
+          <option value="0">Female</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="Married">Married</label>
+        <select id="Married" name="Married" required>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="Dependents">Dependents</label>
+        <input
+          id="Dependents"
+          name="Dependents"
+          type="number" 
+          min="0"
+          max="3"
+          placeholder="No of Dependents on you....."
+          required
+        />
+      </div>
+      <div class="form-row">
+        <label for="Education">Education</label>
+        <select id="Education" name="Education" required>
+          <option value="0">Graduate</option>
+          <option value="1">Not Graduate</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="Self Employed">Self Employed</label>
+        <select id="Self Employed" name="Self Employed" required>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="Applicant Income">Applicant Income</label>
+        <input
+          id="Applicant Income"
+          name="Applicant Income"
+          type="number" 
+          min="0"
+          placeholder="Your Income....."
+          required
+        />
+      </div>
+      <div class="form-row">
+        <label for="Co Applicant Income">Co Applicant Income</label>
+        <input
+          id="Co Applicant Income"
+          name="Co Applicant Income"
+          type="number" 
+          min="0"
+          placeholder="Your Co Applicant Income....."
+          required
+        />
+      </div>
+      <div class="form-row">
+        <label for="Loan Amount">Loan Amount</label>
+        <input
+          id="Loan Amount"
+          name="Loan Amount"
+          type="number" 
+          min="0"
+          placeholder="Enter the Loan Amount....."
+          required
+        />
+      </div>
+      <div class="form-row">
+        <label for="Loan Amount Term">Loan Amount Term</label>
+        <input
+          id="Loan Amount Term"
+          name="Loan Amount Term"
+          type="number" 
+          min="0"
+          placeholder="Enter the Loan Amount Term in days....."
+          required
+        />
+      </div>
+      <div class="form-row">
+        <label for="Credit History">Credit History</label>
+        <select id="Credit History" name="Credit History" required>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="Property Area">Property Area</label>
+        <select id="Property Area" name="Property Area" required>
+          <option value="0">Urban</option>
+          <option value="1">Semiurban</option>
+          <option value="2">Rural</option>
+        </select>
+      </div>
+      <!-- <div class="form-row">
+        <label for="abstract">Abstract</label>
+        <textarea id="abstract" name="abstract"></textarea>
+        <div class="instructions">Describe your talk in 500 words or less</div>
+      </div>
+      <div class="form-row">
+        <label class="checkbox-label" for="available">
+          <input
+            id="available"
+            name="available"
+            type="checkbox"
+            value="is-available"
+          />
+          <span>I’m actually available the date of the talk</span>
+        </label>
+      </div> -->
+      <div class="form-row">
+        <button>Submit</button>
+      </div>
+    </form>
+  </body>
+</html>
